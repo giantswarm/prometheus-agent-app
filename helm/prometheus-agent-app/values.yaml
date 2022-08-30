@@ -1,0 +1,8 @@
+name: prometheus-agent-app
+serviceType: managed
+
+project:
+  branch: "[[ .Branch ]]"
+  commit: "[[ .SHA ]]"
+
+
