@@ -13,4 +13,5 @@ spec:
     port: reloader-web
   selector:
     matchLabels:
-{{ include "labels.selector" . | indent 6 }}
+      app.kubernetes.io/name: prometheus
+      app.kubernetes.io/instance: {{ .Release.Name }}

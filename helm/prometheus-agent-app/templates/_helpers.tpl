@@ -32,7 +32,6 @@ application.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 application.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 giantswarm.io/managed-by: {{ .Release.Name | quote }}
-giantswarm.io/service-type: {{ .Values.serviceType }}
 helm.sh/chart: {{ include "chart" . | quote }}
 {{- end -}}
 
@@ -40,7 +39,12 @@ helm.sh/chart: {{ include "chart" . | quote }}
 prometheus-image
 */}}
 {{- define "prometheus-image" -}}
-{{- printf "%s:%s" .Values.image .Chart.AppVersion | trunc 63 | trimSuffix "-" -}}
+{{- if eq .Values.image.tag "" -}}
+{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Chart.AppVersion | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+{{- if ne .Values.image.tag "" -}}
+{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Values.image.tag | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
 {{- end -}}
 
 

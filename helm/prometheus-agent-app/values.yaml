@@ -1,15 +1,23 @@
-remoteWrite:
- - url: http://thanos-receive-ingestor-default.thanos.svc:19291/api/v1/receive
+image: 
+  registry: quay.io
+  name: giantswarm/prometheus
+  tag: ""
 
-labelSelector:
-  app: prometheus-agent
+remoteWrite: []
 
-image: quay.io/giantswarm/prometheus
+probeNamespaceSelector: {}
+probeSelector:
+  matchLabels:
+    app: prometheus-agent
+serviceMonitorSelector: {}
+podMonitorSelector:
+  matchLabels:
+    app: prometheus-agent
+serviceMonitorNamespaceSelector: {}
+podMonitorNamespaceSelector: {}
 
 securityContext:
   fsGroup: 2000
   runAsGroup: 2000
   runAsNonRoot: true
   runAsUser: 1000
-
-serviceAccountName: prometheus-agent

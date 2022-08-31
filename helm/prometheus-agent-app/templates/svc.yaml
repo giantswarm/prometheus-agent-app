@@ -9,10 +9,11 @@ spec:
   ports:
   - name: web
     port: 9090
-    targetPort: web
+    targetPort: http-web
   - name: reloader-web
     port: 8080
     targetPort: reloader-web
   selector:
-{{ include "labels.selector" . | indent 4 }}
+    app.kubernetes.io/name: prometheus
+    app.kubernetes.io/instance: {{ .Release.Name }}
   sessionAffinity: ClientIP
