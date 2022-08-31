@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   labels:
-     resource: Prometheus
+{{ include "labels.common" . | indent 4 }}
   name: {{ include "name" . }}
   namespace: {{ .Release.Namespace }}
 spec:
