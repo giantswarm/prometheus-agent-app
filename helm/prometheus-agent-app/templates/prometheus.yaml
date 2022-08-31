@@ -18,36 +18,28 @@ spec:
   enableFeatures:
   - agent
   evaluationInterval: 30s
-  externalUrl: http://kube-prometheus-agent-prometheus.monitoring:9090
-  image: quay.io/giantswarm/prometheus:v2.36.1
+  externalUrl: {{ include "external-url" .}}
+  image: {{ include "prometheus-image" . }}
   listenLocal: false
-  logFormat: logfmt
-  logLevel: info
-  paused: false
   podMonitorNamespaceSelector: {}
   podMonitorSelector:
     matchLabels:
-      release: kube-prometheus
+{{ toYaml  .Values.labelSelector | indent 6 }}
   portName: http-web
   probeNamespaceSelector: {}
   probeSelector:
     matchLabels:
-      release: kube-prometheus
+{{ toYaml  .Values.labelSelector | indent 6 }}
   remoteWrite:
-  - url: http://thanos-receive-ingestor-default.thanos.svc:19291/api/v1/receive
-  replicas: 1
+{{ toYaml .Values.remoteWrite | indent 2 }}
   retention: 10d
   routePrefix: /
   scrapeInterval: 30s
   securityContext:
-    fsGroup: 2000
-    runAsGroup: 2000
-    runAsNonRoot: true
-    runAsUser: 1000
-  serviceAccountName: kube-prometheus-agent-prometheus
+{{ toYaml  .Values.securityContext | indent 4 }}
+  serviceAccountName: {{ .Values.serviceAccountName }}
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector:
     matchLabels:
-      release: kube-prometheus
-  shards: 1
-  version: v2.36.1
+{{ toYaml  .Values.labelSelector | indent 6 }}
+  version: {{ .Chart.AppVersion }}

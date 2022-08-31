@@ -1,8 +1,15 @@
-name: prometheus-agent-app
-serviceType: managed
+remoteWrite:
+ - url: http://thanos-receive-ingestor-default.thanos.svc:19291/api/v1/receive
 
-project:
-  branch: "[[ .Branch ]]"
-  commit: "[[ .SHA ]]"
+labelSelector:
+  app: prometheus-agent
 
+image: quay.io/giantswarm/prometheus
 
+securityContext:
+  fsGroup: 2000
+  runAsGroup: 2000
+  runAsNonRoot: true
+  runAsUser: 1000
+
+serviceAccountName: prometheus-agent

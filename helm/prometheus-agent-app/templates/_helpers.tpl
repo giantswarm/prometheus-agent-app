@@ -36,3 +36,17 @@ giantswarm.io/service-type: {{ .Values.serviceType }}
 helm.sh/chart: {{ include "chart" . | quote }}
 {{- end -}}
 
+{{/*
+prometheus-image
+*/}}
+{{- define "prometheus-image" -}}
+{{- printf "%s:%s" .Values.image .Chart.AppVersion | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+
+{{/*
+external-url
+*/}}
+{{- define "external-url" -}}
+{{- printf "http://%s.%s:9090" .Release.Name .Release.Namespace | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
