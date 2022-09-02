@@ -1,0 +1,75 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  labels:
+{{ include "labels.common" . | indent 4 }}
+  name: {{ include "name" . }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  containers:
+  - args:
+    - --config.file=/etc/prometheus/config_out/prometheus.env.yaml
+    - --storage.agent.path=/prometheus
+    - --enable-feature=agent
+    - --web.enable-lifecycle
+    - --web.listen-address=:9090
+    name: prometheus
+  enableAdminAPI: false
+  enableFeatures:
+  - agent
+  evaluationInterval: 30s
+  externalUrl: {{ include "external-url" .}}
+  image: {{ include "prometheus-image" . }}
+  listenLocal: false
+{{- if .Values.podMonitorNamespaceSelector }}
+{{ toYaml  .Values.podMonitorNamespaceSelector | indent 4 }}
+{{ else }}
+  podMonitorNamespaceSelector: {}
+{{- end }}
+{{- if .Values.podMonitorSelector }}  
+  podMonitorSelector:
+{{ toYaml  .Values.podMonitorSelector | indent 4 }}
+{{ else }}
+  podMonitorSelector: {}
+{{- end }}
+  portName: http-web
+{{- if .Values.probeNamespaceSelector }}  
+  probeNamespaceSelector:
+{{ toYaml  .Values.probeNamespaceSelector | indent 4 }}
+{{ else }}
+  probeNamespaceSelector: {}
+{{- end }}
+{{- if .Values.probeSelector }}
+  probeSelector:
+{{ toYaml  .Values.probeSelector | indent 4 }}
+{{ else }}
+  probeSelector: {}
+{{- end }}
+{{- if .Values.remoteWrite }}
+  remoteWrite:
+{{ toYaml .Values.remoteWrite | indent 2 }}
+{{ else }}
+  remoteWrite: []
+{{- end }}
+  retention: 10d
+  routePrefix: /
+  scrapeInterval: 30s
+  securityContext:
+{{ toYaml  .Values.securityContext | indent 4 }}
+  serviceAccountName: {{ include "name" .}}
+{{- if .Values.serviceMonitorNamespaceSelector }}
+  serviceMonitorNamespaceSelector:
+{{ toYaml  .Values.serviceMonitorNamespaceSelector | indent 4 }}
+{{ else }}
+  serviceMonitorNamespaceSelector: {}
+{{- end }}
+{{- if .Values.serviceMonitorSelector }}
+  serviceMonitorSelector:
+{{ toYaml  .Values.serviceMonitorSelector | indent 4 }}
+{{ else }}
+  serviceMonitorSelector: {}
+{{- end }}
+  podMetadata:
+    labels:
+{{ include "labels.common" . | indent 6 }}
+  version: {{ .Chart.AppVersion }}
