@@ -39,11 +39,10 @@ helm.sh/chart: {{ include "chart" . | quote }}
 prometheus-image
 */}}
 {{- define "prometheus-image" -}}
-{{- if eq .Values.image.tag "" -}}
-{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Chart.AppVersion | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- if ne .Values.image.tag "" -}}
-{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Values.image.tag | trunc 63 | trimSuffix "-" -}}
+{{- if .Values.image.tag -}}
+{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Values.image.tag -}}
+{{- else -}}
+{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Chart.AppVersion -}}
 {{- end -}}
 {{- end -}}
 
