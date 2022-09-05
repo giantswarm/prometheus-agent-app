@@ -4,7 +4,7 @@ name: prometheus-agent-app
 description: A Helm chart for Prometheus agent.
 home: https://github.com/giantswarm/prometheus-agent-app
 sources:
-- https://github.com/giantswarm/prometheus-agent-app
+  - https://github.com/giantswarm/prometheus-agent-app
 version: 0.1.0
 annotations:
   application.giantswarm.io/team: atlas
