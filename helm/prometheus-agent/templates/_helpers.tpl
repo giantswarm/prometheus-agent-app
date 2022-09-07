@@ -33,3 +33,7 @@ app.kubernetes.io/version: {{ .Values.image.tag | default .Chart.AppVersion | qu
 app.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 helm.sh/chart: {{ include "chart" . | quote }}
 {{- end -}}
+
+{{- define "psp.name" -}}
+{{- include "name" . -}}-psp
+{{- end -}}

@@ -1,4 +1,4 @@
-image: 
+image:
   registry: quay.io
   name: giantswarm/prometheus
   tag: ""
@@ -23,3 +23,6 @@ securityContext:
   runAsGroup: 2000
   runAsNonRoot: true
   runAsUser: 1000
+
+psp:
+  enabled: true
