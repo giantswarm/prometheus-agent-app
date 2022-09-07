@@ -2,10 +2,10 @@
 
 [Read me after cloning this template (GS staff only)](https://intranet.giantswarm.io/docs/dev-and-releng/app-developer-processes/adding_app_to_appcatalog/)
 
-# prometheus-agent-app chart
+# prometheus-agent chart
 
-Giant Swarm offers a prometheus-agent-app App which can be installed in workload clusters.
-Here we define the prometheus-agent-app chart with its templates and default configuration.
+Giant Swarm offers a prometheus-agent App which can be installed in workload clusters.
+Here we define the prometheus-agent chart with its templates and default configuration.
 
 **What is this app?**
 
