@@ -27,29 +27,9 @@ Common labels
 {{- define "labels.common" -}}
 {{ include "labels.selector" . }}
 app.giantswarm.io/branch: {{ .Chart.Annotations.branch | replace "#" "-" | replace "/" "-" | replace "." "-" | trunc 63 | trimSuffix "-" | quote }}
-application.giantswarm.io/commit: {{ .Chart.Annotations.commit | quote }}
-application.kubernetes.io/managed-by: {{ .Release.Service | quote }}
-application.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
-giantswarm.io/managed-by: {{ .Release.Name | quote }}
+app.giantswarm.io/commit: {{ .Chart.Annotations.commit | quote }}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+app.kubernetes.io/version: {{ .Values.image.tag | default .Chart.AppVersion | quote }}
+app.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
 helm.sh/chart: {{ include "chart" . | quote }}
-{{- end -}}
-
-{{/*
-prometheus-image
-*/}}
-{{- define "prometheus-image" -}}
-{{- if .Values.image.tag -}}
-{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Values.image.tag -}}
-{{- else -}}
-{{- printf "%s/%s:%s" .Values.image.registry .Values.image.name .Chart.AppVersion -}}
-{{- end -}}
-{{- end -}}
-
-
-{{/*
-external-url
-*/}}
-{{- define "external-url" -}}
-{{- printf "http://%s.%s:9090" .Release.Name .Release.Namespace | trunc 63 | trimSuffix "-" -}}
 {{- end -}}

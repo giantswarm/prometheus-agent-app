@@ -2,6 +2,8 @@ image:
   registry: quay.io
   name: giantswarm/prometheus
   tag: ""
+  sha: ""
+  pullPolicy: "Always"
 
 remoteWrite: []
 
@@ -9,12 +11,12 @@ probeNamespaceSelector: {}
 probeSelector:
   matchLabels:
     app: prometheus-agent
+serviceMonitorNamespaceSelector: {}
 serviceMonitorSelector: {}
+podMonitorNamespaceSelector: {}
 podMonitorSelector:
   matchLabels:
     app: prometheus-agent
-serviceMonitorNamespaceSelector: {}
-podMonitorNamespaceSelector: {}
 
 securityContext:
   fsGroup: 2000
