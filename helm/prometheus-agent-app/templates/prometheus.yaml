@@ -21,7 +21,6 @@ spec:
   {{- else }}
   image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   {{- end }}
-  imagePullPolicy: {{ .Values.image.pullPolicy }}
   listenLocal: false
 {{- if .Values.podMonitorNamespaceSelector }}
 {{ toYaml  .Values.podMonitorNamespaceSelector | indent 4 }}

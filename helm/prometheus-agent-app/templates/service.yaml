@@ -14,5 +14,6 @@ spec:
     port: 8080
     targetPort: reloader-web
   selector:
-    {{ include "labels.selector" . | nindent 4 }}
+    app.kubernetes.io/instance: {{ include "name" . }}
+    app.kubernetes.io/name: prometheus
   sessionAffinity: ClientIP

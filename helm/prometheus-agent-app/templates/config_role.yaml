@@ -27,5 +27,5 @@ roleRef:
   name: {{ .Release.Name }}-config
 subjects:
 - kind: ServiceAccount
-  name: {{ .Release.Name }}
+  name: {{ include "name" .}}
   namespace: {{ .Release.Namespace }}
