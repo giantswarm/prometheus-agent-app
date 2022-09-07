@@ -29,6 +29,7 @@ spec:
     - 'secret'
     - 'configMap'
     - 'emptyDir'
+    - 'projected'
   allowPrivilegeEscalation: false
   hostNetwork: false
   hostIPC: false
