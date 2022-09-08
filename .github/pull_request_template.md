@@ -14,7 +14,7 @@ This PR:
 
 ### Testing
 
-Description on how {APP-NAME} can be tested.
+Description on how prometheus-agent-app can be tested.
 
 - [ ] fresh install works
   - [ ] AWS
@@ -27,7 +27,7 @@ Description on how {APP-NAME} can be tested.
 
 #### Other testing
 
-Description of features to additionally test for {APP-NAME} installations.
+Description of features to additionally test for prometheus-agent-app installations.
 
 - [ ] check reconciliation of existing resources after upgrading
 - [ ] X still works after upgrade

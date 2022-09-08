@@ -1,0 +1,31 @@
+## Allow the app to access configmaps in it's own namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+{{ include "labels.common" . | indent 4 }}
+  name: {{ .Release.Name }}-config
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+{{ include "labels.common" . | indent 4 }}
+  name: {{ .Release.Name }}-config
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ .Release.Name }}-config
+subjects:
+- kind: ServiceAccount
+  name: {{ include "name" .}}
+  namespace: {{ .Release.Namespace }}

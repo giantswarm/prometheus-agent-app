@@ -1,0 +1,63 @@
+## Allos discovery of metrics trough nodes, /metrics, service monitors.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+{{ include "labels.common" . | indent 4 }}
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes/metrics
+  verbs:
+  - get
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+- apiGroups:
+  - policy
+  resourceNames:
+  - kube-prometheus-restricted
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+## Ensure service monitors work across all namespaces
+- apiGroups:
+  - ""
+  resources:
+  - services
+  - endpoints
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - extensions
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+{{ include "labels.common" . | indent 4 }}
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Release.Name }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "name" .}}
+  namespace: {{ .Release.Namespace }}

@@ -14,12 +14,13 @@ spec:
     - --web.enable-lifecycle
     - --web.listen-address=:9090
     name: prometheus
-  enableAdminAPI: false
   enableFeatures:
   - agent
-  evaluationInterval: 30s
-  externalUrl: {{ include "external-url" .}}
-  image: {{ include "prometheus-image" . }}
+  {{- if .Values.image.sha }}
+  image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}@sha256:{{ .Values.image.sha }}"
+  {{- else }}
+  image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+  {{- end }}
   listenLocal: false
 {{- if .Values.podMonitorNamespaceSelector }}
 {{ toYaml  .Values.podMonitorNamespaceSelector | indent 4 }}
@@ -52,8 +53,6 @@ spec:
   remoteWrite: []
 {{- end }}
   retention: 10d
-  routePrefix: /
-  scrapeInterval: 30s
   securityContext:
 {{ toYaml  .Values.securityContext | indent 4 }}
   serviceAccountName: {{ include "name" .}}
@@ -72,4 +71,4 @@ spec:
   podMetadata:
     labels:
 {{ include "labels.common" . | indent 6 }}
-  version: {{ .Chart.AppVersion }}
+  version: {{ .Values.image.tag | default .Chart.AppVersion }}
