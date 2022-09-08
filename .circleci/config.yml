@@ -8,10 +8,10 @@ workflows:
       - architect/push-to-app-catalog:
           context: "architect"
           # executor: "app-build-suite" # uncomment this if you want automatic metadata generation and helm chart linting
-          name: "package and push prometheus-agent-app chart"
+          name: "package and push prometheus-agent chart"
           app_catalog: "giantswarm-playground-catalog"
           app_catalog_test: "giantswarm-playground-test-catalog"
-          chart: "prometheus-agent-app"
+          chart: "prometheus-agent"
           # Trigger job on git tag.
           filters:
             tags:
