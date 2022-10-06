@@ -2,7 +2,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
   labels:
-{{ include "labels.common" . | indent 4 }}
+    {{ include "labels.common" . | nindent 4 }}
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
 spec:
@@ -13,4 +13,4 @@ spec:
     port: reloader-web
   selector:
     matchLabels:
-      {{- include "labels.selector" . | nindent 6 }}
+      {{- include "labels.selector" . | nindent 6 -}}

@@ -1,8 +1,9 @@
+{{- $remoteWrites := concat .Values.global.remoteWrite .Values.remoteWrite -}}
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   labels:
-{{ include "labels.common" . | indent 4 }}
+    {{ include "labels.common" . | nindent 4 }}
   name: {{ include "name" . }}
   namespace: {{ .Release.Namespace }}
 spec:
@@ -23,7 +24,7 @@ spec:
   {{- end }}
   listenLocal: false
 {{- if .Values.podMonitorNamespaceSelector }}
-{{ toYaml  .Values.podMonitorNamespaceSelector | indent 4 }}
+    {{ toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
 {{ else }}
   podMonitorNamespaceSelector: {}
 {{- end }}
@@ -46,7 +47,21 @@ spec:
 {{- else }}
   probeSelector: {}
 {{- end }}
-{{- include "prometheus-agent.remote-write" . | nindent 2}}
+{{- if $remoteWrites }}
+  remoteWrite:
+  {{- range $remoteWrite := $remoteWrites }}
+  - basicAuth:
+      password:
+        key: password
+        name: {{ $remoteWrite.name }}-remote-write-api
+      username:
+        key: username
+        name: {{ $remoteWrite.name }}-remote-write-api
+    url: {{ $remoteWrite.url }}
+{{- end -}}
+{{- else }}
+  remoteWrite: []
+{{- end }}
   retention: 10d
   securityContext:
     {{- toYaml  .Values.securityContext | nindent 4 }}
@@ -65,5 +80,5 @@ spec:
 {{- end }}
   podMetadata:
     labels:
-{{ include "labels.common" . | indent 6 }}
+      {{ include "labels.common" . | nindent 6 }}
   version: {{ .Values.image.tag | default .Chart.AppVersion }}
