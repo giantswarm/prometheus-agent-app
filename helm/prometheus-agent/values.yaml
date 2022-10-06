@@ -1,3 +1,10 @@
+global:
+  remoteWrite: []
+  # - name: ""     # Name of the remote write integration
+  #   url: ""      # URL to send data to
+  #   username: "" # Username to use
+  #   password: "" # Password
+
 prometheus-agent:
   image:
     registry: quay.io

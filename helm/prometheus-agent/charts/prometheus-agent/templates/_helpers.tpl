@@ -35,3 +35,31 @@ helm.sh/chart: {{ include "chart" . | quote }}
 {{- define "psp.name" -}}
 {{- include "name" . -}}-psp
 {{- end -}}
+
+{{- define "prometheus-agent.remote-write" -}}
+{{- if or .Values.global.remoteWrite .Values.remoteWrite -}}
+remoteWrite:
+{{- range $remoteWrite := .Values.global.remoteWrite }}
+- basicAuth:
+    password:
+      key: password
+      name: {{ $remoteWrite.name }}-remote-write-api
+    username:
+      key: username
+      name: {{ $remoteWrite.name }}-remote-write-api
+  url: {{ $remoteWrite.url }}
+{{- end -}}
+{{- range $remoteWrite := .Values.remoteWrite }}
+- basicAuth:
+    password:
+      key: password
+      name: {{ $remoteWrite.name }}-remote-write-api
+    username:
+      key: username
+      name: {{ $remoteWrite.name }}-remote-write-api
+  url: {{ $remoteWrite.url }}
+{{- end -}}
+{{- else }}
+remoteWrite: []
+{{- end }}
+{{- end -}}

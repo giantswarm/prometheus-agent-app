@@ -46,21 +46,7 @@ spec:
 {{- else }}
   probeSelector: {}
 {{- end }}
-{{- if .Values.remoteWrite }}
-  remoteWrite:
-  {{- range $remoteWrite := .Values.remoteWrite }}
-  - basicAuth:
-      password:
-        key: password
-        name: {{ $remoteWrite.name }}-remote-write-api
-      username:
-        key: username
-        name: {{ $remoteWrite.name }}-remote-write-api
-    url: {{ $remoteWrite.url }}
-  {{- end -}}
-{{- else }}
-  remoteWrite: []
-{{- end }}
+{{- include "prometheus-agent.remote-write" . | nindent 2}}
   retention: 10d
   securityContext:
     {{- toYaml  .Values.securityContext | nindent 4 }}
