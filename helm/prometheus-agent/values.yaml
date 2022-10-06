@@ -6,17 +6,17 @@ image:
   pullPolicy: "Always"
 
 remoteWrite: []
+# - name: ""     # Name of the remote write integration
+#   url: ""      # URL to send data to
+#   username: "" # Username to use
+#   password: "" # Password
 
 probeNamespaceSelector: {}
-probeSelector:
-  matchLabels:
-    app: prometheus-agent
+probeSelector: {}
 serviceMonitorNamespaceSelector: {}
 serviceMonitorSelector: {}
 podMonitorNamespaceSelector: {}
-podMonitorSelector:
-  matchLabels:
-    app: prometheus-agent
+podMonitorSelector: {}
 
 securityContext:
   fsGroup: 2000
