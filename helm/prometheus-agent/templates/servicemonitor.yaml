@@ -13,4 +13,4 @@ spec:
     port: reloader-web
   selector:
     matchLabels:
-      {{ include "labels.selector" . | nindent 6 }}
+      {{- include "labels.selector" . | nindent 6 }}

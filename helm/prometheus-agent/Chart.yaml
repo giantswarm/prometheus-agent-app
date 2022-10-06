@@ -8,4 +8,3 @@ sources:
 version: [[ .Version ]]
 annotations:
   application.giantswarm.io/team: atlas
-  branch: main

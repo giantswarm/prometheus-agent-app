@@ -29,42 +29,51 @@ spec:
 {{- end }}
 {{- if .Values.podMonitorSelector }}  
   podMonitorSelector:
-{{ toYaml  .Values.podMonitorSelector | indent 4 }}
-{{ else }}
+    {{- toYaml  .Values.podMonitorSelector | nindent 4 }}
+{{- else }}
   podMonitorSelector: {}
 {{- end }}
   portName: http-web
 {{- if .Values.probeNamespaceSelector }}  
   probeNamespaceSelector:
-{{ toYaml  .Values.probeNamespaceSelector | indent 4 }}
-{{ else }}
+    {{- toYaml  .Values.probeNamespaceSelector | nindent 4 }}
+{{- else }}
   probeNamespaceSelector: {}
 {{- end }}
 {{- if .Values.probeSelector }}
   probeSelector:
-{{ toYaml  .Values.probeSelector | indent 4 }}
-{{ else }}
+    {{- toYaml  .Values.probeSelector | nindent 4 }}
+{{- else }}
   probeSelector: {}
 {{- end }}
 {{- if .Values.remoteWrite }}
   remoteWrite:
-{{ toYaml .Values.remoteWrite | indent 2 }}
-{{ else }}
+  {{- range $remoteWrite := .Values.remoteWrite }}
+  - basicAuth:
+      password:
+        key: password
+        name: {{ $remoteWrite.name }}-remote-write-api
+      username:
+        key: username
+        name: {{ $remoteWrite.name }}-remote-write-api
+    url: {{ $remoteWrite.url }}
+  {{- end -}}
+{{- else }}
   remoteWrite: []
 {{- end }}
   retention: 10d
   securityContext:
-{{ toYaml  .Values.securityContext | indent 4 }}
+    {{- toYaml  .Values.securityContext | nindent 4 }}
   serviceAccountName: {{ include "name" .}}
 {{- if .Values.serviceMonitorNamespaceSelector }}
   serviceMonitorNamespaceSelector:
-{{ toYaml  .Values.serviceMonitorNamespaceSelector | indent 4 }}
-{{ else }}
+    {{- toYaml .Values.serviceMonitorNamespaceSelector | nindent 4 }}
+{{- else }}
   serviceMonitorNamespaceSelector: {}
 {{- end }}
 {{- if .Values.serviceMonitorSelector }}
   serviceMonitorSelector:
-{{ toYaml  .Values.serviceMonitorSelector | indent 4 }}
+    {{- toYaml .Values.serviceMonitorSelector | nindent 4 -}}
 {{ else }}
   serviceMonitorSelector: {}
 {{- end }}
