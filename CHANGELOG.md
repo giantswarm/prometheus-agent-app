@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Change
+
+- Change how we configure the remote write endpoint and secrets.
+
 ## [0.1.1] - 2022-09-08
 
 ### Change

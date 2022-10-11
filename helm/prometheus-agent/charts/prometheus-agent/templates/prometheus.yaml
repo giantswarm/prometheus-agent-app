@@ -1,8 +1,9 @@
+{{- $remoteWrites := concat .Values.global.remoteWrite .Values.remoteWrite -}}
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   labels:
-{{ include "labels.common" . | indent 4 }}
+    {{ include "labels.common" . | nindent 4 }}
   name: {{ include "name" . }}
   namespace: {{ .Release.Namespace }}
 spec:
@@ -23,52 +24,62 @@ spec:
   {{- end }}
   listenLocal: false
 {{- if .Values.podMonitorNamespaceSelector }}
-{{ toYaml  .Values.podMonitorNamespaceSelector | indent 4 }}
+    {{ toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
 {{ else }}
   podMonitorNamespaceSelector: {}
 {{- end }}
 {{- if .Values.podMonitorSelector }}  
   podMonitorSelector:
-{{ toYaml  .Values.podMonitorSelector | indent 4 }}
-{{ else }}
+    {{- toYaml  .Values.podMonitorSelector | nindent 4 }}
+{{- else }}
   podMonitorSelector: {}
 {{- end }}
   portName: http-web
 {{- if .Values.probeNamespaceSelector }}  
   probeNamespaceSelector:
-{{ toYaml  .Values.probeNamespaceSelector | indent 4 }}
-{{ else }}
+    {{- toYaml  .Values.probeNamespaceSelector | nindent 4 }}
+{{- else }}
   probeNamespaceSelector: {}
 {{- end }}
 {{- if .Values.probeSelector }}
   probeSelector:
-{{ toYaml  .Values.probeSelector | indent 4 }}
-{{ else }}
+    {{- toYaml  .Values.probeSelector | nindent 4 }}
+{{- else }}
   probeSelector: {}
 {{- end }}
-{{- if .Values.remoteWrite }}
+{{- if $remoteWrites }}
   remoteWrite:
-{{ toYaml .Values.remoteWrite | indent 2 }}
-{{ else }}
+  {{- range $remoteWrite := $remoteWrites }}
+  - basicAuth:
+      password:
+        key: password
+        name: {{ $remoteWrite.name }}-remote-write-api
+      username:
+        key: username
+        name: {{ $remoteWrite.name }}-remote-write-api
+    remoteTimeout: 5m
+    url: {{ $remoteWrite.url }}
+{{- end -}}
+{{- else }}
   remoteWrite: []
 {{- end }}
   retention: 10d
   securityContext:
-{{ toYaml  .Values.securityContext | indent 4 }}
+    {{- toYaml  .Values.securityContext | nindent 4 }}
   serviceAccountName: {{ include "name" .}}
 {{- if .Values.serviceMonitorNamespaceSelector }}
   serviceMonitorNamespaceSelector:
-{{ toYaml  .Values.serviceMonitorNamespaceSelector | indent 4 }}
-{{ else }}
+    {{- toYaml .Values.serviceMonitorNamespaceSelector | nindent 4 }}
+{{- else }}
   serviceMonitorNamespaceSelector: {}
 {{- end }}
 {{- if .Values.serviceMonitorSelector }}
   serviceMonitorSelector:
-{{ toYaml  .Values.serviceMonitorSelector | indent 4 }}
+    {{- toYaml .Values.serviceMonitorSelector | nindent 4 -}}
 {{ else }}
   serviceMonitorSelector: {}
 {{- end }}
   podMetadata:
     labels:
-{{ include "labels.common" . | indent 6 }}
+      {{ include "labels.common" . | nindent 6 }}
   version: {{ .Values.image.tag | default .Chart.AppVersion }}
