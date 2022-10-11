@@ -57,6 +57,7 @@ spec:
       username:
         key: username
         name: {{ $remoteWrite.name }}-remote-write-api
+    remoteTimeout: 5m
     url: {{ $remoteWrite.url }}
 {{- end -}}
 {{- else }}
