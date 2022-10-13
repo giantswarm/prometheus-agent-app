@@ -59,6 +59,10 @@ spec:
         name: {{ $remoteWrite.name }}-remote-write-api
     remoteTimeout: 5m
     url: {{ $remoteWrite.url }}
+{{- if $remoteWrite.queueConfig }}
+    queueConfig:
+      {{- toYaml $remoteWrite.queueConfig | nindent 6 }}
+{{- end -}}
 {{- end -}}
 {{- else }}
   remoteWrite: []
