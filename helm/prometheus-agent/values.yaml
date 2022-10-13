@@ -4,6 +4,11 @@ global:
   #   url: ""      # URL to send data to
   #   username: "" # Username to use
   #   password: "" # Password
+  #   #  https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
+  #   queueConfig:
+  #     capacity: 10000
+  #     maxSamplesPerSend: 1000
+  #     minShards: 10
 
 prometheus-agent:
   image:
@@ -18,6 +23,11 @@ prometheus-agent:
   #   url: ""      # URL to send data to
   #   username: "" # Username to use
   #   password: "" # Password
+  #   #   https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
+  #   queueConfig:
+  #     capacity: 10000
+  #     maxSamplesPerSend: 1000
+  #     minShards: 10
 
   probeNamespaceSelector: {}
   probeSelector: {}
