@@ -10,7 +10,7 @@ global:
   #     maxSamplesPerSend: 1000
   #     minShards: 10
 
-  externalLabels: []
+  externalLabels: {}
 
 prometheus-agent:
   image:
@@ -31,7 +31,7 @@ prometheus-agent:
   #     maxSamplesPerSend: 10000
   #     maxShards: 10
 
-  externalLabels: []
+  externalLabels: {}
 
   probeNamespaceSelector: {}
   probeSelector: {}
