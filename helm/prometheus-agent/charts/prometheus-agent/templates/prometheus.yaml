@@ -1,4 +1,5 @@
 {{- $remoteWrites := concat .Values.global.remoteWrite .Values.remoteWrite -}}
+{{- $externalLabels := concat .Values.global.externalLabels .Values.externalLabels -}}
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
@@ -17,9 +18,9 @@ spec:
     name: prometheus
   enableFeatures:
   - agent
-  {{- if .Values.externalLabels }}
+  {{- if $externalLabels }}
   externalLabels:
-    {{- toYaml  .Values.externalLabels | nindent 4 }}
+    {{- toYaml $externalLabels | nindent 4 }}
   {{- end }}
   {{- if .Values.image.sha }}
   image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}@sha256:{{ .Values.image.sha }}"

@@ -10,6 +10,8 @@ global:
   #     maxSamplesPerSend: 1000
   #     minShards: 10
 
+  externalLabels: []
+
 prometheus-agent:
   image:
     registry: quay.io
