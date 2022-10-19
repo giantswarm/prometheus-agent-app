@@ -1,5 +1,5 @@
 {{- $remoteWrites := concat .Values.global.remoteWrite .Values.remoteWrite -}}
-{{- $externalLabels := concat .Values.global.externalLabels .Values.externalLabels -}}
+{{- $externalLabels := merge .Values.global.externalLabels .Values.externalLabels -}}
 apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:

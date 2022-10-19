@@ -16,7 +16,7 @@ remoteWrite: []
 #     maxSamplesPerSend: 10000
 #     maxShards: 10
 
-externalLabels: []
+externalLabels: {}
 
 probeNamespaceSelector: {}
 probeSelector: {}
