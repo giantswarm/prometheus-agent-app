@@ -17,6 +17,10 @@ spec:
     name: prometheus
   enableFeatures:
   - agent
+  {{- if .Values.externalLabels }}
+  externalLabels:
+    {{- toYaml  .Values.externalLabels | nindent 4 }}
+  {{- end }}
   {{- if .Values.image.sha }}
   image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}@sha256:{{ .Values.image.sha }}"
   {{- else }}
@@ -57,7 +61,7 @@ spec:
       username:
         key: username
         name: {{ $remoteWrite.name }}-remote-write-api
-    remoteTimeout: 5m
+    remoteTimeout: 30s
     url: {{ $remoteWrite.url }}
 {{- if $remoteWrite.queueConfig }}
     queueConfig:

@@ -7,21 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add external labels support.
+
 ## [0.1.2] - 2022-10-13
 
-### Change
+### Changed
 
 - Change how we configure the remote write endpoint and secrets.
 
 ## [0.1.1] - 2022-09-08
 
-### Change
+### Changed
 
 - Follow best practices and some clean up.
 
 ## [0.1.0] - 2022-09-05
 
-- changed: `app.giantswarm.io` label group was changed to `application.giantswarm.io`
+- First app iteration.
 
 [Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.2...HEAD
 [0.1.2]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.1...v0.1.2
