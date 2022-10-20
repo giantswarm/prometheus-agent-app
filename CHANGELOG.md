@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add support to relabel metrics from the service monitor.
+
 ## [0.1.3] - 2022-10-19
 
 ### Added
