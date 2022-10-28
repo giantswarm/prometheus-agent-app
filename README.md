@@ -9,9 +9,15 @@ Here we define the prometheus-agent chart with its templates and default configu
 
 **What is this app?**
 
+This app installs a Prometheus CR bundled with all required resources(RBAC, SA, NetworkPolicy...) in WC.
+
 **Why did we add it?**
 
+In order to scrape authenticated endpoints in WC, we implemented this prometheus-agent which can send metrics via remotewrite to the MC.
+
 **Who can use it?**
+
+Anyone.
 
 ## Installing
 
@@ -28,7 +34,26 @@ There are several ways to install this app onto a workload cluster.
 
 ```yaml
 # values.yaml
-
+prometheus-agent:
+  serviceMonitor:
+    enabled: true
+    relabelings:
+    # Add app label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_app_kubernetes_io_name
+      targetLabel: app
+    # Add instance label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_app_kubernetes_io_instance
+      targetLabel: instance
+    # Add node label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_node_name
+      targetLabel: node
+    # Add team label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_application_giantswarm_io_team
+      targetLabel: team
 ```
 
 ### Sample App CR and ConfigMap for the management cluster
@@ -41,12 +66,53 @@ workload cluster `abc12`:
 
 ```yaml
 # appCR.yaml
-
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  labels:
+    app-operator.giantswarm.io/version: 6.4.1
+    application.giantswarm.io/team: atlas
+    giantswarm.io/cluster: abc12
+  name: prometheus-agent
+  namespace: abc12
+spec:
+  catalog: giantswarm-playground
+  config:
+    configMap:
+      name: ""
+      namespace: ""
+    secret:
+      name: ""
+      namespace: ""
+  kubeConfig:
+    context:
+      name: abc12
+    inCluster: false
+    secret:
+      name: abc12-kubeconfig
+      namespace: abc12
+  userConfig:
+    configMap:
+      name: "prometheus-agent-chart-values"
+      namespace: "abc12"    
+  name: prometheus-agent
+  namespace: kube-system
+  version: 0.1.4
 ```
 
 ```yaml
 # user-values-configmap.yaml
-
+apiVersion: v1
+data:
+  values: |
+      global:
+          remoteWrite:
+           - name: "abc12" 
+             url: "$BASEDOMAIN/abc12"
+kind: ConfigMap
+metadata:
+  name: prometheus-agent-chart-values
+  namespace: abc12
 ```
 
 See our [full reference on how to configure apps](https://docs.giantswarm.io/app-platform/app-configuration/) for more details.
