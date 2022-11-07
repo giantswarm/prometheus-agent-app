@@ -9,7 +9,7 @@ Here we define the prometheus-agent chart with its templates and default configu
 
 **What is this app?**
 
-Prometheus-agent is a lightweight prometheus instance, that forwards metrics to a prometheus via remotewrites and does not manage storage of data.
+Prometheus-agent is a lightweight prometheus instance, that forwards metrics to a prometheus via the [Prometheus Remote Write API](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) and does not manage storage of data.
 See https://prometheus.io/blog/2021/11/16/agent/ for more context.
 
 **Why did we add it?**
