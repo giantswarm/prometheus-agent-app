@@ -14,7 +14,7 @@ See https://prometheus.io/blog/2021/11/16/agent/ for more context.
 
 **Why did we add it?**
 
-We use it to gather metrics on WCs, and remoteWrite them to prometheus on the MC.
+We use it to gather the metrics from the Workload Cluters and forward the data to our monitoring setup.
 This way we support features of Prometheus (like serviceMonitors) on the WCs, without actually hosting it there.
 
 **Who can use it?**
