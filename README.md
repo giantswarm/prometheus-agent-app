@@ -63,10 +63,6 @@ prometheus-agent:
     - sourceLabels:
       - __meta_kubernetes_pod_node_name
       targetLabel: node
-    # Add team label.
-    - sourceLabels:
-      - __meta_kubernetes_pod_label_application_giantswarm_io_team
-      targetLabel: team
 ```
 
 ### Conflicts 
@@ -77,7 +73,7 @@ you can use selectors for `ServiceMonitors` and `PodMonitors`:
 ```yaml
 prometheus-agent:
   serviceMonitorSelector:
-    cluster: "c8dfg"
+    organization: giantswarm
   podMonitorSelector:
-    cluster: "c8dfg"
+    organization: giantswarm
 ```
