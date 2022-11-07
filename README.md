@@ -20,6 +20,7 @@ This way we support features of Prometheus (like serviceMonitors) on the WCs, wi
 **Who can use it?**
 
 GiantSwarm deploys prometheus-agent to all workload clusters, in the `kube-system` namespace.
+But customers may want to install their own `prometheus-agent` and manage their own `servicemonitors` and `podmonitors`, to send metrics to their own remote `prometheus` instance.
 
 ## Prerequisites
 
