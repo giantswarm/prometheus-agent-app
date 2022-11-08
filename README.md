@@ -73,7 +73,7 @@ you can use selectors for `ServiceMonitors` and `PodMonitors`:
 ```yaml
 prometheus-agent:
   serviceMonitorSelector:
-    organization: giantswarm
+    organization: my-org
   podMonitorSelector:
-    organization: giantswarm
+    organization: my-org
 ```
