@@ -29,7 +29,8 @@ spec:
   {{- end }}
   listenLocal: false
 {{- if .Values.podMonitorNamespaceSelector }}
-    {{ toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
+  podMonitorNamespaceSelector:
+    {{- toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
 {{ else }}
   podMonitorNamespaceSelector: {}
 {{- end }}

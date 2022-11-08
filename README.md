@@ -9,9 +9,23 @@ Here we define the prometheus-agent chart with its templates and default configu
 
 **What is this app?**
 
+Prometheus-agent is a lightweight prometheus instance, that forwards metrics to a prometheus via the [Prometheus Remote Write API](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) and does not manage storage of data.
+See https://prometheus.io/blog/2021/11/16/agent/ for more context.
+
 **Why did we add it?**
 
+We use it to gather the metrics from the Workload Cluters and forward the data to our monitoring setup.
+This way we support features of Prometheus (like serviceMonitors) on the WCs, without actually hosting it there.
+
 **Who can use it?**
+
+GiantSwarm deploys prometheus-agent to all workload clusters, in the `kube-system` namespace.
+But customers may want to install their own `prometheus-agent` and manage their own `servicemonitors` and `podmonitors`, to send metrics to their own remote `prometheus` instance.
+
+## Prerequisites
+
+- Prometheus operator CRDs: https://github.com/giantswarm/prometheus-operator-crd
+- prometheus operator deployed: https://github.com/giantswarm/prometheus-operator-app
 
 ## Installing
 
@@ -28,42 +42,38 @@ There are several ways to install this app onto a workload cluster.
 
 ```yaml
 # values.yaml
+global:
+  remoteWrite:
+  - name: "remotewrite" 
+    url: "http://$BASEDOMAIN/write"
 
+prometheus-agent:
+  serviceMonitor:
+    enabled: true
+    relabelings:
+    # Add app label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_app_kubernetes_io_name
+      targetLabel: app
+    # Add instance label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_label_app_kubernetes_io_instance
+      targetLabel: instance
+    # Add node label.
+    - sourceLabels:
+      - __meta_kubernetes_pod_node_name
+      targetLabel: node
 ```
 
-### Sample App CR and ConfigMap for the management cluster
+### Conflicts 
 
-If you have access to the Kubernetes API on the management cluster, you could create
-the App CR and ConfigMap directly.
-
-Here is an example that would install the app to
-workload cluster `abc12`:
+To avoid conflicts with other prometheuses deployed to same cluster,
+you can use selectors for `ServiceMonitors` and `PodMonitors`:
 
 ```yaml
-# appCR.yaml
-
+prometheus-agent:
+  serviceMonitorSelector:
+    organization: my-org
+  podMonitorSelector:
+    organization: my-org
 ```
-
-```yaml
-# user-values-configmap.yaml
-
-```
-
-See our [full reference on how to configure apps](https://docs.giantswarm.io/app-platform/app-configuration/) for more details.
-
-## Compatibility
-
-This app has been tested to work with the following workload cluster release versions:
-
-- _add release version_
-
-## Limitations
-
-Some apps have restrictions on how they can be deployed.
-Not following these limitations will most likely result in a broken deployment.
-
-- _add limitation_
-
-## Credit
-
-- {APP HELM REPOSITORY}
