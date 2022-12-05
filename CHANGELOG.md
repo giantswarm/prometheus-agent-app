@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add namespaceSingleton restriction, so installed only once.
 
+### Changed
+
+- Use `app-build-suite`.
+
 ## [0.1.5] - 2022-11-08
 
 ### Fixed
