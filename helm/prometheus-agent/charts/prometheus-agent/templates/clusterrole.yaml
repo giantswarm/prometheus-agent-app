@@ -1,4 +1,4 @@
-## Allos discovery of metrics trough nodes, /metrics, service monitors.
+## Allows discovery of metrics trough nodes, /metrics, service monitors.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:

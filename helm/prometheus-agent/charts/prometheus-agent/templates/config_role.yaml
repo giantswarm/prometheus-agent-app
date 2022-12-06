@@ -1,4 +1,4 @@
-## Allow the app to access configmaps in it's own namespace
+## Allows the app to access configmaps in it's own namespace
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
