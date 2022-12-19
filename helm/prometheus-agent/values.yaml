@@ -22,6 +22,7 @@ prometheus-agent:
 
   remoteWrite: []
   # - name: ""     # Name of the remote write integration
+  #   proxyUrl: ""
   #   url: ""      # URL to send data to
   #   username: "" # Username to use
   #   password: "" # Password
@@ -30,6 +31,8 @@ prometheus-agent:
   #     capacity: 30000
   #     maxSamplesPerSend: 10000
   #     maxShards: 10
+  #   tlsConfig:
+  #     insecureSkipVerify: false
 
   externalLabels: {}
 

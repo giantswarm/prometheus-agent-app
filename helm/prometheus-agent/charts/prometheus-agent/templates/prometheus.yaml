@@ -63,8 +63,15 @@ spec:
       username:
         key: username
         name: {{ $remoteWrite.name }}-remote-write-api
+    {{- if $remoteWrite.proxyUrl }}
+    proxyUrl: {{ $remoteWrite.proxyUrl }}
+    {{- end }}
     remoteTimeout: 30s
     url: {{ $remoteWrite.url }}
+{{- if $remoteWrite.tlsConfig }}
+    tlsConfig:
+      {{- toYaml $remoteWrite.tlsConfig | nindent 6 }}
+{{- end }}
 {{- if $remoteWrite.queueConfig }}
     queueConfig:
       {{- toYaml $remoteWrite.queueConfig | nindent 6 }}
