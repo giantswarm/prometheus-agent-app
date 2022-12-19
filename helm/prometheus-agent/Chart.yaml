@@ -8,7 +8,7 @@ dependencies:
 home: https://github.com/giantswarm/prometheus-agent-app
 sources:
   - https://github.com/giantswarm/prometheus-agent-app
-version: 0.1.6
+version: 0.1.7
 annotations:
   application.giantswarm.io/team: atlas
 restrictions:
