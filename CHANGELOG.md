@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Allow overridabiliby of the tls configuration.
+
 ## [0.1.6] - 2022-12-06
 
 ### Added
