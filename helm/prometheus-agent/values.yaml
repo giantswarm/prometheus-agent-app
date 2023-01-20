@@ -12,6 +12,9 @@ global:
 
   externalLabels: {}
 
+image:
+  tag: ""
+
 prometheus-agent:
   image:
     registry: quay.io
@@ -73,3 +76,6 @@ prometheus-agent:
 
   psp:
     enabled: true
+
+  configmaps:
+    - prometheus-agent-watchdog
