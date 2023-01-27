@@ -3,16 +3,11 @@
 ### Config
 
 metrics_url="localhost:9090/metrics"
-overload_tolerance=2 # allow up to x times max shards
+overload_tolerance="${WATCHDOG_OVERLOAD_TOLERANCE:-2}" # allow up to x times max shards
 
 
 exit_error() {
     echo "ERROR: $*"
-    exit 1
-}
-
-kill_overload() {
-    echo "kill kill!"
     exit 1
 }
 

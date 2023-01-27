@@ -21,11 +21,17 @@ spec:
     - containerPort: 9090
       name: http-web
       protocol: TCP
+    {{- if .Values.watchdog.enabled }}
     livenessProbe:
       exec:
         command:
+        {{- if .Values.watchdog.command }}
+        {{- toYaml .Values.watchdog.command | nindent 8 }}
+        {{- else }}
         - sh
         - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+        {{- end }}
+    {{- end }}
   configMaps:
     {{- toYaml .Values.configmaps | nindent 4 }}
   enableFeatures:
