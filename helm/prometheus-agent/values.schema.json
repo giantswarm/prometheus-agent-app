@@ -13,6 +13,14 @@
                 }
             }
         },
+        "image": {
+            "type": "object",
+            "properties": {
+                "tag": {
+                    "type": "string"
+                }
+            }
+        },
         "prometheus-agent": {
             "type": "object",
             "properties": {
@@ -103,6 +111,20 @@
                 },
                 "serviceMonitorSelector": {
                     "type": "object"
+                },
+                "watchdog": {
+                    "type": "object",
+                    "properties": {
+                        "command": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
                 }
             }
         }
