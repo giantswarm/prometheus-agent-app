@@ -22,7 +22,7 @@ exit_error() {
 #      successThreshold: 1
 #      timeoutSeconds: 3
 default_liveness() {
-  wget --timeout 3 --tries 3 -q -O /dev/null http://localhost:9090/-/ready
+  wget --timeout 3 --tries 3 -q -O /dev/null http://localhost:9090/-/healthy
   return $?
 }
 
@@ -32,9 +32,9 @@ main() {
     default_liveness \
         || exit_error "liveness probe failed"
 
-    shards_desire="$(wget -O- --timeout 2 --tries 3 -q "$metrics_url" \
-                     | sed -n 's/^prometheus_remote_storage_shards_desire.* \([0-9]*\)\.[0-9]*/\1/p')"
-    [ -z "$shards_desire" ] \
+    shards_desired="$(wget -O- --timeout 2 --tries 3 -q "$metrics_url" \
+                     | sed -n 's/^prometheus_remote_storage_shards_desired.* \([0-9]*\)\.[0-9]*/\1/p')"
+    [ -z "$shards_desired" ] \
         && exit_error "could not determine desired shards"
 
     shards_max="$(wget -O- --timeout 2 --tries 3 -q "$metrics_url" \
@@ -42,10 +42,10 @@ main() {
     [ -z "$shards_max" ] \
         && exit_error "could not determine max shards"
 
-    echo "Desired shards: $shards_desire / max $shards_max"
+    echo "Desired shards: $shards_desired / max $shards_max"
 
-    [ "$shards_desire" -gt "$((shards_max * overload_tolerance))" ] \
-        && exit_error "Overloaded - $shards_desire desired chards for max $shards_max shards"
+    [ "$shards_desired" -gt "$((shards_max * overload_tolerance))" ] \
+        && exit_error "Overloaded - $shards_desired desired chards for max $shards_max shards"
 
     exit 0
 }

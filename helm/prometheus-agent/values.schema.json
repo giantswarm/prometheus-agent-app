@@ -13,14 +13,6 @@
                 }
             }
         },
-        "image": {
-            "type": "object",
-            "properties": {
-                "tag": {
-                    "type": "string"
-                }
-            }
-        },
         "prometheus-agent": {
             "type": "object",
             "properties": {

@@ -12,9 +12,6 @@ global:
 
   externalLabels: {}
 
-image:
-  tag: ""
-
 prometheus-agent:
   image:
     registry: quay.io
@@ -80,6 +77,6 @@ prometheus-agent:
   watchdog:
     enabled: true
     command:
+      # - WATCHDOG_OVERLOAD_TOLERANCE=4
       - sh
-      - WATCHDOG_OVERLOAD_TOLERANCE=4
       - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
