@@ -73,3 +73,10 @@ prometheus-agent:
 
   psp:
     enabled: true
+
+  watchdog:
+    enabled: true
+    command:
+      # - WATCHDOG_OVERLOAD_TOLERANCE=4
+      - sh
+      - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh

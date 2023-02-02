@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- watchdog to reset agent if too much data is enqueued, to reduce stress on remote prometheus
+
 ## [0.1.7] - 2022-12-19
 
 ### Fixed

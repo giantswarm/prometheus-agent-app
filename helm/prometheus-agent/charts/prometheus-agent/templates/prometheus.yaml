@@ -16,6 +16,24 @@ spec:
     - --web.enable-lifecycle
     - --web.listen-address=:9090
     name: prometheus
+    # force exposition of port for monitoring
+    ports:
+    - containerPort: 9090
+      name: http-web
+      protocol: TCP
+    {{- if .Values.watchdog.enabled }}
+    livenessProbe:
+      exec:
+        command:
+        {{- if .Values.watchdog.command }}
+        {{- toYaml .Values.watchdog.command | nindent 8 }}
+        {{- else }}
+        - sh
+        - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+        {{- end }}
+    {{- end }}
+  configMaps:
+    {{- toYaml .Values.configmaps | nindent 4 }}
   enableFeatures:
   - agent
   {{- if $externalLabels }}
@@ -27,7 +45,8 @@ spec:
   {{- else }}
   image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   {{- end }}
-  listenLocal: false
+  # workaround - required to use an `exec command` livenessProbe.
+  listenLocal: true
 {{- if .Values.podMonitorNamespaceSelector }}
   podMonitorNamespaceSelector:
     {{- toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
