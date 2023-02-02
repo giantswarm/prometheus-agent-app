@@ -13,14 +13,10 @@ exit_error() {
 
 ### Default liveness probe:
 #    livenessProbe:
-#      failureThreshold: 6
 #      httpGet:
 #        path: /-/healthy
 #        port: http-web
 #        scheme: HTTP
-#      periodSeconds: 5
-#      successThreshold: 1
-#      timeoutSeconds: 3
 default_liveness() {
   wget --timeout 3 --tries 3 -q -O /dev/null http://localhost:9090/-/healthy
   return $?
