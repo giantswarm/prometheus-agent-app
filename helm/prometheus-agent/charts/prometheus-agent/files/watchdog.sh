@@ -7,7 +7,7 @@ overload_tolerance="${WATCHDOG_OVERLOAD_TOLERANCE:-2}" # allow up to x times max
 
 
 exit_error() {
-    echo "ERROR: $*"
+    echo "ERROR - $(basename "$0"): $*"
     exit 1
 }
 
