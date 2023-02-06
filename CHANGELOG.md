@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-02-06
+
 ### Added
 
 - watchdog to reset agent if too much data is enqueued, to reduce stress on remote prometheus
@@ -62,7 +64,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First app iteration.
 
-[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.7...HEAD
+[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.5...v0.1.6
 [0.1.5]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.4...v0.1.5
