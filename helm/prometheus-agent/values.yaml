@@ -1,4 +1,6 @@
 global:
+  image:
+    registry: docker.io
   remoteWrite: []
   # - name: ""     # Name of the remote write integration
   #   url: ""      # URL to send data to
@@ -14,7 +16,6 @@ global:
 
 prometheus-agent:
   image:
-    registry: quay.io
     name: giantswarm/prometheus
     tag: ""
     sha: ""

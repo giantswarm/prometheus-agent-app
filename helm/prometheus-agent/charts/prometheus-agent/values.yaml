@@ -1,5 +1,8 @@
+global:
+  image:
+    registry: docker.io
+
 image:
-  registry: quay.io
   name: giantswarm/prometheus
   tag: ""
   sha: ""
