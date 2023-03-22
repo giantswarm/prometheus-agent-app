@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2023-03-22
+
 ### Changed
 
 - Upgrade prometheus from `2.40.5` to `2.41.0`
 - Add support for global.image.registry.
+- Move to `default` App Catalog (so China's configs are applied) and because it is now a default app
 
 ## [0.2.0] - 2023-02-06
 
@@ -69,7 +72,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First app iteration.
 
-[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.1.5...v0.1.6
