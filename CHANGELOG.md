@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Upgrade prometheus from `2.40.5` to `2.41.0`
 - Add support for global.image.registry.
+- Move to `default` App Catalog (so China's configs are applied) and because it is now a default app
 
 ## [0.2.0] - 2023-02-06
 
