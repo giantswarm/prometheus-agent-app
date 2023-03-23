@@ -17,7 +17,7 @@ global:
 prometheus-agent:
   image:
     name: giantswarm/prometheus
-    tag: ""
+    tag: "2.43.0+stringlabels"
     sha: ""
     pullPolicy: "Always"
 
