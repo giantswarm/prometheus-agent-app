@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- set scrapeInterval configurable via values
+- change default scrapeInterval from 30s to 60s
+
 ## [0.3.0] - 2023-03-22
 
 ### Changed
