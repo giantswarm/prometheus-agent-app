@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- `preStop` hook added to clean the agent wal before the container be killed
 - set scrapeInterval configurable via values
 - change default scrapeInterval from 30s to 60s
 
