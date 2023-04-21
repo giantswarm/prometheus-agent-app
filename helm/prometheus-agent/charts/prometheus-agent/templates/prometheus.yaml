@@ -28,7 +28,7 @@ spec:
           command:                                                                                                             
           - /bin/sh                                                                                                            
           - -c                                                                                                                 
-          - rm -f /prometheus/wal/*                                                                                            
+          - rm -rf /prometheus/wal
     livenessProbe:
       exec:
         command:
