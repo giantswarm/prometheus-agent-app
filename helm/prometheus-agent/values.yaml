@@ -35,7 +35,14 @@ prometheus-agent:
   #   tlsConfig:
   #     insecureSkipVerify: false
 
+  replicas: 1
+  shards: 1
+
+  retention: 10d
+
   externalLabels: {}
+
+  version: ""
 
   serviceMonitor:
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.

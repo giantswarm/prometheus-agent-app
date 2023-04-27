@@ -15,24 +15,24 @@ spec:
     matchNames:
       - {{ .Release.Namespace }}
   endpoints:
-  - interval: 30s
+  - interval: {{ .Values.serviceMonitor.scrapeInterval }}
     port: web
-{{- if .Values.serviceMonitor.metricRelabelings }}
+    {{- if .Values.serviceMonitor.metricRelabelings }}
     metricRelabelings:
-{{ tpl (toYaml .Values.serviceMonitor.metricRelabelings | indent 4) . }}
-{{- end }}
-{{- if .Values.serviceMonitor.relabelings }}
+    {{ tpl (toYaml .Values.serviceMonitor.metricRelabelings | nindent 4) . }}
+    {{- end }}
+    {{- if .Values.serviceMonitor.relabelings }}
     relabelings:
-{{ tpl (toYaml .Values.serviceMonitor.relabelings | indent 4) . }}
-{{- end }}
-  - interval: 30s
+    {{ tpl (toYaml .Values.serviceMonitor.relabelings | nindent 4) . }}
+    {{- end }}
+  - interval: {{ .Values.serviceMonitor.scrapeInterval }}
     port: reloader-web
-{{- if .Values.serviceMonitor.metricRelabelings }}
+    {{- if .Values.serviceMonitor.metricRelabelings }}
     metricRelabelings:
-{{ tpl (toYaml .Values.serviceMonitor.metricRelabelings | indent 4) . }}
-{{- end }}
-{{- if .Values.serviceMonitor.relabelings }}
+    {{ tpl (toYaml .Values.serviceMonitor.metricRelabelings | nindent 4) . }}
+    {{- end }}
+    {{- if .Values.serviceMonitor.relabelings }}
     relabelings:
-{{ tpl (toYaml .Values.serviceMonitor.relabelings | indent 4) . }}
-{{- end }}
+    {{ tpl (toYaml .Values.serviceMonitor.relabelings | nindent 4) . }}
+    {{- end }}
 {{- end }}
