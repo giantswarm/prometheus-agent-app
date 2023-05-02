@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Add more options to configure the agent (prometheus versions, retention, replicas, shards and so on).
+
 ## [0.4.1] - 2023-04-21
 
 ### Fixed
