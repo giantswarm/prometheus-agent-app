@@ -54,6 +54,9 @@ spec:
   {{- end }}
   # workaround - required to use an `exec command` livenessProbe.
   listenLocal: true
+  podMetadata:
+    labels:
+      {{ include "labels.common" . | nindent 6 }}
 {{- if .Values.podMonitorNamespaceSelector }}
   podMonitorNamespaceSelector:
     {{- toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
@@ -106,7 +109,8 @@ spec:
 {{- else }}
   remoteWrite: []
 {{- end }}
-  retention: 10d
+  replicas: {{ .Values.replicas }}
+  retention: {{ .Values.retention }}
   scrapeInterval: {{ .Values.scrapeInterval }}
   securityContext:
     {{- toYaml  .Values.securityContext | nindent 4 }}
@@ -123,7 +127,5 @@ spec:
 {{ else }}
   serviceMonitorSelector: {}
 {{- end }}
-  podMetadata:
-    labels:
-      {{ include "labels.common" . | nindent 6 }}
-  version: {{ .Values.image.tag | default .Chart.AppVersion }}
+  shards: {{ .Values.shards }}
+  version: {{ default .Values.image.tag .Values.version | default .Chart.AppVersion }}
