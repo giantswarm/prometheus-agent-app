@@ -15,7 +15,7 @@ spec:
     matchNames:
       - {{ .Release.Namespace }}
   endpoints:
-  - interval: {{ .Values.serviceMonitor.scrapeInterval }}
+  - interval: {{ .Values.scrapeInterval }}
     port: web
     {{- if .Values.serviceMonitor.metricRelabelings }}
     metricRelabelings:
@@ -25,7 +25,7 @@ spec:
     relabelings:
     {{ tpl (toYaml .Values.serviceMonitor.relabelings | nindent 4) . }}
     {{- end }}
-  - interval: {{ .Values.serviceMonitor.scrapeInterval }}
+  - interval: {{ .Values.scrapeInterval }}
     port: reloader-web
     {{- if .Values.serviceMonitor.metricRelabelings }}
     metricRelabelings:

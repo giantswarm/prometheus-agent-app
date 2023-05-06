@@ -8,6 +8,14 @@
                 "externalLabels": {
                     "type": "object"
                 },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "registry": {
+                            "type": "string"
+                        }
+                    }
+                },
                 "remoteWrite": {
                     "type": "array"
                 }
@@ -26,9 +34,6 @@
                             "type": "string"
                         },
                         "pullPolicy": {
-                            "type": "string"
-                        },
-                        "registry": {
                             "type": "string"
                         },
                         "sha": {
@@ -61,6 +66,12 @@
                 },
                 "remoteWrite": {
                     "type": "array"
+                },
+                "replicas": {
+                    "type": "integer"
+                },
+                "retention": {
+                    "type": "string"
                 },
                 "securityContext": {
                     "type": "object",
@@ -103,6 +114,12 @@
                 },
                 "serviceMonitorSelector": {
                     "type": "object"
+                },
+                "shards": {
+                    "type": "integer"
+                },
+                "version": {
+                    "type": "string"
                 },
                 "watchdog": {
                     "type": "object",
