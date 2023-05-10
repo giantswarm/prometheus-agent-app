@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Define pod disruption budget to allow eviction no matter what.
+
 ## [0.5.1] - 2023-05-06
 
 ### Fixed

@@ -4,7 +4,7 @@ apiVersion: monitoring.coreos.com/v1
 kind: Prometheus
 metadata:
   labels:
-    {{ include "labels.common" . | nindent 4 }}
+    {{- include "labels.common" . | nindent 4 }}
   name: {{ include "name" . }}
   namespace: {{ .Release.Namespace }}
 spec:

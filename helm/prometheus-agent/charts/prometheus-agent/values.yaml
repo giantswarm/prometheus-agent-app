@@ -8,6 +8,10 @@ image:
   sha: ""
   pullPolicy: "Always"
 
+pdb:
+  minAvailable: 0
+  maxUnavailable: 100%
+
 remoteWrite: []
 # - name: ""     # Name of the remote write integration
 #   proxyUrl: ""
