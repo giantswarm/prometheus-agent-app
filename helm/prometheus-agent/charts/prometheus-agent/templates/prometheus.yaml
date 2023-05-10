@@ -55,6 +55,8 @@ spec:
   # workaround - required to use an `exec command` livenessProbe.
   listenLocal: true
   podMetadata:
+    annotations:
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
     labels:
       {{ include "labels.common" . | nindent 6 }}
 {{- if .Values.podMonitorNamespaceSelector }}
