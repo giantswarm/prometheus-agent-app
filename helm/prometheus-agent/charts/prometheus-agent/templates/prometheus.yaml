@@ -94,6 +94,7 @@ spec:
       username:
         key: username
         name: {{ $remoteWrite.name }}-remote-write-api
+    name: {{ $remoteWrite.name }}
     {{- if $remoteWrite.proxyUrl }}
     proxyUrl: {{ $remoteWrite.proxyUrl }}
     {{- end }}
