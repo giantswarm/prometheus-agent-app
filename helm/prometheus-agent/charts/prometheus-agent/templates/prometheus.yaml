@@ -84,6 +84,7 @@ spec:
 {{- else }}
   probeSelector: {}
 {{- end }}
+  prometheusExternalLabelName: ""
 {{- if $remoteWrites }}
   remoteWrite:
   {{- range $remoteWrite := $remoteWrites }}
@@ -113,6 +114,7 @@ spec:
   remoteWrite: []
 {{- end }}
   replicas: {{ .Values.replicas }}
+  replicaExternalLabelName: ""
   retention: {{ .Values.retention }}
   scrapeInterval: {{ .Values.scrapeInterval }}
   securityContext:
