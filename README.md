@@ -1,6 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/prometheus-agent-app.svg?style=shield)](https://circleci.com/gh/giantswarm/prometheus-agent-app)
-
-[Read me after cloning this template (GS staff only)](https://intranet.giantswarm.io/docs/dev-and-releng/app-developer-processes/adding_app_to_appcatalog/)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/giantswarm/prometheus-agent-app/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/giantswarm/prometheus-agent-app/tree/main)
 
 # prometheus-agent chart
 
