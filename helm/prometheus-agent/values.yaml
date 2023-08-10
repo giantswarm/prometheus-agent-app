@@ -79,9 +79,6 @@ prometheus-agent:
     seccompProfile:
       type: RuntimeDefault
 
-  psp:
-    enabled: true
-
   watchdog:
     enabled: true
     command:
