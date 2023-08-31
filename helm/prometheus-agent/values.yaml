@@ -45,6 +45,8 @@ prometheus-agent:
   version: ""
 
   serviceMonitor:
+    enabled: true
+
     ## MetricRelabelConfigs to apply to samples after scraping, but before ingestion.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
@@ -56,7 +58,23 @@ prometheus-agent:
     ## RelabelConfigs to apply to samples before scraping
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#relabelconfig
     ##
-    relabelings: []
+    relabelings:
+      # Add app label.
+      - sourceLabels:
+        - __meta_kubernetes_pod_label_app_kubernetes_io_name
+        targetLabel: app
+      # Add instance label.
+      - sourceLabels:
+        - __meta_kubernetes_pod_label_app_kubernetes_io_instance
+        targetLabel: instance
+      # Add node label.
+      - sourceLabels:
+        - __meta_kubernetes_pod_node_name
+        targetLabel: node
+      # Add team label.
+      - sourceLabels:
+        - __meta_kubernetes_pod_label_application_giantswarm_io_team
+        targetLabel: team
     # - sourceLabels: [__meta_kubernetes_pod_node_name]
     #   separator: ;
     #   regex: ^(.*)$
@@ -65,11 +83,20 @@ prometheus-agent:
     #   action: replace
 
   probeNamespaceSelector: {}
-  probeSelector: {}
+  probeSelector:
+    matchExpressions:
+      - key: "application.giantswarm.io/team"
+        operator: "Exists"
   serviceMonitorNamespaceSelector: {}
-  serviceMonitorSelector: {}
+  serviceMonitorSelector:
+    matchExpressions:
+      - key: "application.giantswarm.io/team"
+        operator: "Exists"
   podMonitorNamespaceSelector: {}
-  podMonitorSelector: {}
+  podMonitorSelector:
+    matchExpressions:
+      - key: "application.giantswarm.io/team"
+        operator: "Exists"
 
   securityContext:
     fsGroup: 2000
