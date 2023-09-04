@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Upgrade prometheus to 2.46.0 and update default configuration.
+- Set priority-class to giantswarm-critical.
 
 ## [0.5.4] - 2023-07-31
 
