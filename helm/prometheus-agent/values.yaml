@@ -82,6 +82,8 @@ prometheus-agent:
     #   replacement: $1
     #   action: replace
 
+  priorityClassName: giantswarm-critical
+
   probeNamespaceSelector: {}
   probeSelector:
     matchExpressions:
