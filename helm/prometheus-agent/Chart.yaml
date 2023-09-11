@@ -9,7 +9,7 @@ home: https://github.com/giantswarm/prometheus-agent-app
 kubeVersion: ">=1.19.0-0"
 sources:
   - https://github.com/giantswarm/prometheus-agent-app
-version: 0.6.0
+version: 0.6.1
 annotations:
   application.giantswarm.io/team: atlas
 restrictions:
