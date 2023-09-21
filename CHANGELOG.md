@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Add anti-affinity in the Prometheus CR to avoid prometheus-agent shards from being scheduled on the same node if possible.
+
 ## [0.6.2] - 2023-09-12
 
 ### Changed
