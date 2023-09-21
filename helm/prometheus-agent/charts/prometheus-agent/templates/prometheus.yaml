@@ -73,20 +73,21 @@ spec:
       {{ include "labels.common" . | nindent 6 }}
 {{- if .Values.podMonitorNamespaceSelector }}
   podMonitorNamespaceSelector:
-    {{- toYaml  .Values.podMonitorNamespaceSelector | nindent 4 }}
+    {{- toYaml .Values.podMonitorNamespaceSelector | nindent 4 }}
 {{ else }}
   podMonitorNamespaceSelector: {}
 {{- end }}
 {{- if .Values.podMonitorSelector }}  
   podMonitorSelector:
-    {{- toYaml  .Values.podMonitorSelector | nindent 4 }}
+    {{- toYaml .Values.podMonitorSelector | nindent 4 }}
 {{- else }}
   podMonitorSelector: {}
 {{- end }}
   portName: http-web
+  priorityClassName: {{ .Values.priorityClassName | quote }}
 {{- if .Values.probeNamespaceSelector }}  
   probeNamespaceSelector:
-    {{- toYaml  .Values.probeNamespaceSelector | nindent 4 }}
+    {{- toYaml .Values.probeNamespaceSelector | nindent 4 }}
 {{- else }}
   probeNamespaceSelector: {}
 {{- end }}
