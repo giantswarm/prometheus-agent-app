@@ -19,7 +19,7 @@ spec:
               operator: In
               values:
               - prometheus-agent
-          topologyKey: topology.kubernetes.io/zone
+          topologyKey: kubernetes.io/hostname
   containers:
   - args:
     - --config.file=/etc/prometheus/config_out/prometheus.env.yaml
