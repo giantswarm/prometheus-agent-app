@@ -7,7 +7,7 @@ overload_tolerance="${WATCHDOG_OVERLOAD_TOLERANCE:-2}" # allow up to x times max
 
 
 exit_error() {
-    echo "ERROR - $(basename "$0"): $*"
+    echo "$(basename "$0"): $*"
     exit 1
 }
 
@@ -26,7 +26,7 @@ default_liveness() {
 main() {
 
     default_liveness \
-        || exit_error "liveness probe failed"
+        || exit_error "failed to request /-/healthy endpoint"
 
     shards_desired="$(wget -O- --timeout 2 --tries 3 -q "$metrics_url" \
                      | sed -n 's/^prometheus_remote_storage_shards_desired.* \([0-9]*\)\.[0-9]*/\1/p')"
@@ -38,10 +38,8 @@ main() {
     [ -z "$shards_max" ] \
         && exit_error "could not determine max shards"
 
-    echo "Desired shards: $shards_desired / max $shards_max"
-
     [ "$shards_desired" -gt "$((shards_max * overload_tolerance))" ] \
-        && exit_error "Overloaded - $shards_desired desired chards for max $shards_max shards"
+        && exit_error "Overloaded - desired shards: $shards_desired / max $shards_max"
 
     exit 0
 }
