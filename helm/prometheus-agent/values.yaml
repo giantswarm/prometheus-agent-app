@@ -113,7 +113,7 @@ prometheus-agent:
 
   watchdog:
     enabled: true
-    command:
-      # - WATCHDOG_OVERLOAD_TOLERANCE=4
-      - sh
-      - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+    watchdogOverloadTolerance: 5
+    # command:
+    #   - sh
+    #   - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
