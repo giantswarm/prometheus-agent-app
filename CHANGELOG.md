@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Change watchdog output
 
+### Changed
+
+- Raise WATCHDOG_OVERLOAD_TOLERANCE from 2 to 5 to be more tolerant on desired shards.
+ 
 ## [0.6.3] - 2023-09-21
 
 ### Changed
