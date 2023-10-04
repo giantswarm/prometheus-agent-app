@@ -47,8 +47,9 @@ spec:
         {{- if .Values.watchdog.command }}
         {{- toYaml .Values.watchdog.command | nindent 8 }}
         {{- else }}
-        - sh
-        - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+        - /bin/sh
+        - -c
+        - WATCHDOG_OVERLOAD_TOLERANCE=5 sh /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
         {{- end }}
     {{- end }}
   configMaps:
