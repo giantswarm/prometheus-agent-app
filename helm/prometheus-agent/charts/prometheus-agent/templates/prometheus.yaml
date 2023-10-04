@@ -113,7 +113,7 @@ spec:
     {{- if $remoteWrite.proxyUrl }}
     proxyUrl: {{ $remoteWrite.proxyUrl }}
     {{- end }}
-    remoteTimeout: {{ $remoteWrite.remoteTimeout | default 60s }}
+    remoteTimeout: {{ $remoteWrite.remoteTimeout | default "60s" }}
     url: {{ $remoteWrite.url }}
 {{- if $remoteWrite.tlsConfig }}
     tlsConfig:
