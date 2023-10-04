@@ -47,8 +47,9 @@ spec:
         {{- if .Values.watchdog.command }}
         {{- toYaml .Values.watchdog.command | nindent 8 }}
         {{- else }}
-        - sh
-        - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+        - /bin/sh
+        - -c
+        - WATCHDOG_OVERLOAD_TOLERANCE={{ .Values.watchdog.watchdogOverloadTolerance }} sh /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
         {{- end }}
     {{- end }}
   configMaps:
@@ -112,7 +113,7 @@ spec:
     {{- if $remoteWrite.proxyUrl }}
     proxyUrl: {{ $remoteWrite.proxyUrl }}
     {{- end }}
-    remoteTimeout: 30s
+    remoteTimeout: {{ $remoteWrite.remoteTimeout | default "60s" }}
     url: {{ $remoteWrite.url }}
 {{- if $remoteWrite.tlsConfig }}
     tlsConfig:
