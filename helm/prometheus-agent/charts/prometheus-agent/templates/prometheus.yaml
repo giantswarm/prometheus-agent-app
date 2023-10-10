@@ -65,6 +65,7 @@ spec:
   {{- else }}
   image: "{{ .Values.global.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
   {{- end }}
+  keepDroppedTargets: {{ .Values.keepDroppedTargets }}
   # workaround - required to use an `exec command` livenessProbe.
   listenLocal: true
   podMetadata:

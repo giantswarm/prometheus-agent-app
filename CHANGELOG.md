@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add possibility to configure `keep_dropped_targets` on the agent.
+
+### Changed
+
+- Upgrade Prometheus to 2.47.1.
+
 ## [0.6.4] - 2023-10-04
 
 ### Fixed

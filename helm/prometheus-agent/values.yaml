@@ -21,6 +21,8 @@ prometheus-agent:
     sha: ""
     pullPolicy: "Always"
 
+  keepDroppedTargets: 0
+
   remoteWrite: []
   # - name: ""     # Name of the remote write integration
   #   proxyUrl: ""
