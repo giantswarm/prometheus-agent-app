@@ -8,18 +8,10 @@ metadata:
   name: {{ include "name" . }}
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- with .Values.affinity }}
   affinity:
-    podAntiAffinity:
-      preferredDuringSchedulingIgnoredDuringExecution:
-      - weight: 100
-        podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: operator.prometheus.io/name
-              operator: In
-              values:
-              - prometheus-agent
-          topologyKey: kubernetes.io/hostname
+    {{- toYaml . | nindent 4 -}}
+  {{- end }}
   containers:
   - args:
     - --config.file=/etc/prometheus/config_out/prometheus.env.yaml
@@ -34,18 +26,18 @@ spec:
       name: http-web
       protocol: TCP
     {{- if .Values.watchdog.enabled }}
-    lifecycle:                                                                                                                                                                                                                                                
-      preStop:                                                                                                                                                                                                                                                
-        exec:                                                                                                                  
-          command:                                                                                                             
-          - /bin/sh                                                                                                            
-          - -c                                                                                                                 
+    lifecycle:
+      preStop:
+        exec:
+          command:
+          - /bin/sh
+          - -c
           - rm -rf /prometheus/wal
     livenessProbe:
       exec:
         command:
         {{- if .Values.watchdog.command }}
-        {{- toYaml .Values.watchdog.command | nindent 8 }}
+        {{- toYaml .Values.watchdog.command | nindent 8 -}}
         {{- else }}
         - /bin/sh
         - -c
