@@ -5,6 +5,6 @@ description: A Helm chart for Prometheus agent.
 home: https://github.com/giantswarm/prometheus-agent-app
 sources:
   - https://github.com/giantswarm/prometheus-agent-app
-version: 0.6.5
+version: 0.6.6
 annotations:
   application.giantswarm.io/team: atlas
