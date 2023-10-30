@@ -6,7 +6,7 @@ global:
   #   url: ""      # URL to send data to
   #   username: "" # Username to use
   #   password: "" # Password
-  #   #  https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
+  #   # https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
   #   queueConfig:
   #     capacity: 10000
   #     maxSamplesPerSend: 1000
@@ -21,6 +21,28 @@ prometheus-agent:
     sha: ""
     pullPolicy: "Always"
 
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - preference:
+          matchExpressions:
+          - key: karpenter.sh/capacity-type
+            operator: NotIn
+            values:
+            - spot
+        weight: 100
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+            - key: operator.prometheus.io/name
+              operator: In
+              values:
+              - prometheus-agent
+          topologyKey: kubernetes.io/hostname
+        weight: 50
+
   keepDroppedTargets: 0
 
   remoteWrite: []
@@ -29,11 +51,12 @@ prometheus-agent:
   #   url: ""      # URL to send data to
   #   username: "" # Username to use
   #   password: "" # Password
-  #   #   https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
+  #   # https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
   #   queueConfig:
   #     capacity: 30000
   #     maxSamplesPerSend: 10000
   #     maxShards: 10
+  #   remoteTimeout: 60
   #   tlsConfig:
   #     insecureSkipVerify: false
 
