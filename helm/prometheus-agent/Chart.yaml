@@ -4,12 +4,12 @@ name: prometheus-agent
 description: A Helm chart for Prometheus agent.
 dependencies:
   - name: prometheus-agent
-    version: 0.6.5
+    version: 0.6.6
 home: https://github.com/giantswarm/prometheus-agent-app
 kubeVersion: ">=1.19.0-0"
 sources:
   - https://github.com/giantswarm/prometheus-agent-app
-version: 0.6.5
+version: 0.6.6
 annotations:
   application.giantswarm.io/team: atlas
 restrictions:
