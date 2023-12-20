@@ -1,6 +1,6 @@
 global:
   image:
-    registry: docker.io
+    registry: gsoci.azurecr.io
   remoteWrite: []
   # - name: ""     # Name of the remote write integration
   #   url: ""      # URL to send data to
@@ -24,24 +24,24 @@ prometheus-agent:
   affinity:
     nodeAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-      - preference:
-          matchExpressions:
-          - key: karpenter.sh/capacity-type
-            operator: NotIn
-            values:
-            - spot
-        weight: 100
+        - preference:
+            matchExpressions:
+              - key: karpenter.sh/capacity-type
+                operator: NotIn
+                values:
+                  - spot
+          weight: 100
     podAntiAffinity:
       preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-            - key: operator.prometheus.io/name
-              operator: In
-              values:
-              - prometheus-agent
-          topologyKey: kubernetes.io/hostname
-        weight: 50
+        - podAffinityTerm:
+            labelSelector:
+              matchExpressions:
+                - key: operator.prometheus.io/name
+                  operator: In
+                  values:
+                    - prometheus-agent
+            topologyKey: kubernetes.io/hostname
+          weight: 50
 
   keepDroppedTargets: 0
 
@@ -86,19 +86,19 @@ prometheus-agent:
     relabelings:
       # Add app label.
       - sourceLabels:
-        - __meta_kubernetes_pod_label_app_kubernetes_io_name
+          - __meta_kubernetes_pod_label_app_kubernetes_io_name
         targetLabel: app
       # Add instance label.
       - sourceLabels:
-        - __meta_kubernetes_pod_label_app_kubernetes_io_instance
+          - __meta_kubernetes_pod_label_app_kubernetes_io_instance
         targetLabel: instance
       # Add node label.
       - sourceLabels:
-        - __meta_kubernetes_pod_node_name
+          - __meta_kubernetes_pod_node_name
         targetLabel: node
       # Add team label.
       - sourceLabels:
-        - __meta_kubernetes_pod_label_application_giantswarm_io_team
+          - __meta_kubernetes_pod_label_application_giantswarm_io_team
         targetLabel: team
     # - sourceLabels: [__meta_kubernetes_pod_node_name]
     #   separator: ;
