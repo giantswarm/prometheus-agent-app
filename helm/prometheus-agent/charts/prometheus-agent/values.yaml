@@ -11,24 +11,24 @@ image:
 affinity:
   nodeAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - preference:
-          matchExpressions:
-            - key: karpenter.sh/capacity-type
-              operator: NotIn
-              values:
-                - spot
-        weight: 100
+    - preference:
+        matchExpressions:
+        - key: karpenter.sh/capacity-type
+          operator: NotIn
+          values:
+          - spot
+      weight: 100
   podAntiAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:
-      - podAffinityTerm:
-          labelSelector:
-            matchExpressions:
-              - key: operator.prometheus.io/name
-                operator: In
-                values:
-                  - prometheus-agent
-          topologyKey: kubernetes.io/hostname
-        weight: 50
+    - podAffinityTerm:
+        labelSelector:
+          matchExpressions:
+          - key: operator.prometheus.io/name
+            operator: In
+            values:
+            - prometheus-agent
+        topologyKey: kubernetes.io/hostname
+      weight: 50
 
 keepDroppedTargets: 0
 
