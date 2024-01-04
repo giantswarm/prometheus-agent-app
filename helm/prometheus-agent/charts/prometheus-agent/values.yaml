@@ -1,6 +1,6 @@
 global:
   image:
-    registry: docker.io
+    registry: gsoci.azurecr.io
 
 image:
   name: giantswarm/prometheus

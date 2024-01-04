@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Configure `gsoci.azurecr.io` as the default container image registry.
+
 ## [0.6.6] - 2023-10-30
 
 ### Added
@@ -32,7 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Raise WATCHDOG_OVERLOAD_TOLERANCE from 2 to 5 to be more tolerant on desired shards.
- 
+
 ## [0.6.3] - 2023-09-21
 
 ### Changed
