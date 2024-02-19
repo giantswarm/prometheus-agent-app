@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Possibility to set `enableHTTP2` for remoteWrites
+
+### Changed
+
+- remoteWrites have HTTP2 disabled by default
+
 ## [0.6.7] - 2024-01-09
 
 ### Changed

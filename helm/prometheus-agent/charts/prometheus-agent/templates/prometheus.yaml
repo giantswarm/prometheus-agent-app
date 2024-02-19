@@ -103,6 +103,7 @@ spec:
         key: username
         name: {{ $remoteWrite.name }}-remote-write-api
     name: {{ $remoteWrite.name }}
+    enableHTTP2: {{ $remoteWrite.enableHTTP2 | default "false" }}
     {{- if $remoteWrite.proxyUrl }}
     proxyUrl: {{ $remoteWrite.proxyUrl }}
     {{- end }}

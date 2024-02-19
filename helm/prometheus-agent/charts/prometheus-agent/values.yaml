@@ -38,6 +38,7 @@ remoteWrite: []
 #   url: ""      # URL to send data to
 #   username: "" # Username to use
 #   password: "" # Password
+#   enableHTTP2: false
 #   # https://github.com/prometheus-community/prometheus-operator/blob/main/Documentation/api.md#queueconfig
 #   queueConfig:
 #     capacity: 30000
