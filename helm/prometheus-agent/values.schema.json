@@ -293,7 +293,10 @@
                         "enabled": {
                             "type": "boolean"
                         },
-                        "watchdogOverloadTolerance": {
+                        "overloadTolerance": {
+                            "type": "integer"
+                        },
+                        "probeTimeout": {
                             "type": "integer"
                         }
                     }

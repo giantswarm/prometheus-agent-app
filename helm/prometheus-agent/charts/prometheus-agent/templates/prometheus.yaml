@@ -41,7 +41,7 @@ spec:
         {{- else }}
         - /bin/sh
         - -c
-        - WATCHDOG_OVERLOAD_TOLERANCE={{ .Values.watchdog.watchdogOverloadTolerance }} sh /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+        - WATCHDOG_OVERLOAD_TOLERANCE={{ .Values.watchdog.overloadTolerance }} WATCHDOG_PROBE_TIMEOUT={{ .Values.watchdog.probeTimeout }} sh /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
         {{- end }}
     {{- end }}
   configMaps:
