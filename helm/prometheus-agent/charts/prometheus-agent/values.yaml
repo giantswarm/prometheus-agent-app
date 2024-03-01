@@ -103,6 +103,7 @@ watchdog:
   enabled: true
   overloadTolerance: 5
   probeTimeout: 3
+  probeRetries: 3
   # command:
   #   - sh
   #   - /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh

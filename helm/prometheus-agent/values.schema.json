@@ -296,6 +296,9 @@
                         "overloadTolerance": {
                             "type": "integer"
                         },
+                        "probeRetries": {
+                            "type": "integer"
+                        },
                         "probeTimeout": {
                             "type": "integer"
                         }

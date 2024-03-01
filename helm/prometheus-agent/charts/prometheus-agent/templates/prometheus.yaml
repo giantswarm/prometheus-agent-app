@@ -41,8 +41,10 @@ spec:
         {{- else }}
         - /bin/sh
         - -c
-        - WATCHDOG_OVERLOAD_TOLERANCE={{ .Values.watchdog.overloadTolerance }} WATCHDOG_PROBE_TIMEOUT={{ .Values.watchdog.probeTimeout }} sh /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
+        - WATCHDOG_OVERLOAD_TOLERANCE={{ .Values.watchdog.overloadTolerance }} WATCHDOG_PROBE_TIMEOUT={{ .Values.watchdog.probeTimeout | default 3 }} WATCHDOG_PROBE_RETRIES={{ .Values.watchdog.probeRetries | default 3 }} sh /etc/prometheus/configmaps/prometheus-agent-watchdog/watchdog.sh
         {{- end }}
+      # We multiply the probeTimeout by the probeRetries to get the total timeout then we multiply by 3 because we have 3 probes
+      timeoutSeconds: {{ mul 3 (.Values.watchdog.probeTimeout | default 3) (.Values.watchdog.probeRetries | default 3)  }}
     {{- end }}
   configMaps:
     {{- toYaml .Values.configmaps | nindent 4 }}

@@ -5,7 +5,7 @@
 metrics_url="localhost:9090/metrics"
 overload_tolerance="${WATCHDOG_OVERLOAD_TOLERANCE:-5}" # allow up to x times max shards
 probe_timeout="${WATCHDOG_PROBE_TIMEOUT:-3}" # set the probe timeout to x seconds
-probe_retries=3 # set the number of retries for the liveness probe to x
+probe_retries="${WATCHDOG_PROBE_RETRIES:-3}" # set the number of retries for the liveness probe to x
 
 
 exit_error() {
@@ -26,7 +26,6 @@ default_liveness() {
 
 
 main() {
-
     default_liveness \
         || exit_error "failed to request /-/healthy endpoint"
 
