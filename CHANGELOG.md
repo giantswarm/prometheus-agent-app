@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.9] - 2024-03-01
+
 ### Changed
 
 - Allow overridability of the watchdog probe timeout.
@@ -187,7 +189,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First app iteration.
 
-[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.8...HEAD
+[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.9...HEAD
+[0.6.9]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.8...v0.6.9
 [0.6.8]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.7...v0.6.8
 [0.6.7]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.6...v0.6.7
 [0.6.6]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.5...v0.6.6
