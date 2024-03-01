@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Allow overridability of the watchdog probe timeout.
+
 ## [0.6.8] - 2024-02-19
 
 ### Added
