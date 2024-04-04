@@ -1,10 +1,10 @@
 apiVersion: v2
-appVersion: v2.47.1
+appVersion: v2.51.1
 name: prometheus-agent
 description: A Helm chart for Prometheus agent.
 dependencies:
   - name: prometheus-agent
-    version: 0.6.6
+    version: 0.7.0
 home: https://github.com/giantswarm/prometheus-agent-app
 icon: https://s.giantswarm.io/app-icons/prometheus/1/light.svg
 kubeVersion: ">=1.19.0-0"
