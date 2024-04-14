@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade prometheus version to 2.51.1.
+
 ## [0.6.9] - 2024-03-01
 
 ### Changed
