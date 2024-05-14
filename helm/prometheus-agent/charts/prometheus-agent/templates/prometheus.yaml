@@ -73,7 +73,7 @@ spec:
 {{ else }}
   podMonitorNamespaceSelector: {}
 {{- end }}
-{{- if .Values.podMonitorSelector }}  
+{{- if .Values.podMonitorSelector }}
   podMonitorSelector:
     {{- toYaml .Values.podMonitorSelector | nindent 4 }}
 {{- else }}
@@ -81,7 +81,7 @@ spec:
 {{- end }}
   portName: http-web
   priorityClassName: {{ .Values.priorityClassName | quote }}
-{{- if .Values.probeNamespaceSelector }}  
+{{- if .Values.probeNamespaceSelector }}
   probeNamespaceSelector:
     {{- toYaml .Values.probeNamespaceSelector | nindent 4 }}
 {{- else }}
@@ -126,6 +126,10 @@ spec:
   replicas: {{ .Values.replicas }}
   replicaExternalLabelName: ""
   retention: {{ .Values.retention }}
+{{- if .Values.scrapeClasses }}
+  scrapeClasses:
+    {{- toYaml .Values.scrapeClasses | nindent 4 }}
+{{- end }}
   scrapeInterval: {{ .Values.scrapeInterval }}
   securityContext:
     {{- toYaml  .Values.securityContext | nindent 4 }}

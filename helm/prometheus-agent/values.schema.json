@@ -206,6 +206,40 @@
                 "retention": {
                     "type": "string"
                 },
+                "scrapeClasses": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "default": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "relabelings": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "action": {
+                                            "type": "string"
+                                        },
+                                        "sourceLabels": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "targetLabel": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
                 "securityContext": {
                     "type": "object",
                     "properties": {

@@ -2,6 +2,101 @@
     "$schema": "http://json-schema.org/schema#",
     "type": "object",
     "properties": {
+        "affinity": {
+            "type": "object",
+            "properties": {
+                "nodeAffinity": {
+                    "type": "object",
+                    "properties": {
+                        "preferredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "preference": {
+                                        "type": "object",
+                                        "properties": {
+                                            "matchExpressions": {
+                                                "type": "array",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "key": {
+                                                            "type": "string"
+                                                        },
+                                                        "operator": {
+                                                            "type": "string"
+                                                        },
+                                                        "values": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "podAntiAffinity": {
+                    "type": "object",
+                    "properties": {
+                        "preferredDuringSchedulingIgnoredDuringExecution": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "podAffinityTerm": {
+                                        "type": "object",
+                                        "properties": {
+                                            "labelSelector": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "matchExpressions": {
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "object",
+                                                            "properties": {
+                                                                "key": {
+                                                                    "type": "string"
+                                                                },
+                                                                "operator": {
+                                                                    "type": "string"
+                                                                },
+                                                                "values": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "topologyKey": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "configmaps": {
             "type": "array",
             "items": {
@@ -41,11 +136,17 @@
                 }
             }
         },
+        "keepDroppedTargets": {
+            "type": "integer"
+        },
         "podMonitorNamespaceSelector": {
             "type": "object"
         },
         "podMonitorSelector": {
             "type": "object"
+        },
+        "priorityClassName": {
+            "type": "string"
         },
         "probeNamespaceSelector": {
             "type": "object"
@@ -69,6 +170,40 @@
         },
         "retention": {
             "type": "string"
+        },
+        "scrapeClasses": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "default": {
+                        "type": "boolean"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "relabelings": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "action": {
+                                    "type": "string"
+                                },
+                                "sourceLabels": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "targetLabel": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         },
         "scrapeInterval": {
             "type": "string"
@@ -129,6 +264,15 @@
             "properties": {
                 "enabled": {
                     "type": "boolean"
+                },
+                "overloadTolerance": {
+                    "type": "integer"
+                },
+                "probeRetries": {
+                    "type": "integer"
+                },
+                "probeTimeout": {
+                    "type": "integer"
                 }
             }
         }
