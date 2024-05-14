@@ -126,9 +126,14 @@ spec:
   replicas: {{ .Values.replicas }}
   replicaExternalLabelName: ""
   retention: {{ .Values.retention }}
-{{- if .Values.scrapeClasses }}
+{{- if or .Values.defaultScrapeClasses .Values.scrapeClasses }}
   scrapeClasses:
-    {{- toYaml .Values.scrapeClasses | nindent 4 }}
+    {{- if .Values.defaultScrapeClasses }}
+      {{- toYaml .Values.defaultScrapeClasses | nindent 4 }}
+    {{- end }}
+    {{- if .Values.scrapeClasses }}
+      {{- toYaml .Values.scrapeClasses | nindent 4 }}
+    {{- end }}
 {{- end }}
   scrapeInterval: {{ .Values.scrapeInterval }}
   securityContext:
