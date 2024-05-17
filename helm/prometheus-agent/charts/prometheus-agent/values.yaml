@@ -100,9 +100,6 @@ defaultScrapeClasses:
     - sourceLabels: [__meta_kubernetes_pod_node_name]
       action: "replace"
       targetLabel: node
-    - sourceLabels: [__meta_kubernetes_node_label_role]
-      action: "replace"
-      targetLabel: role
 
 scrapeInterval: 60s
 
