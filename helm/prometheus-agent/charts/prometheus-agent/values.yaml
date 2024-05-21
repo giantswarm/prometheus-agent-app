@@ -86,6 +86,21 @@ serviceMonitorSelector: {}
 podMonitorNamespaceSelector: {}
 podMonitorSelector: {}
 
+# scrapeClasses allows to define relabelings for specific scrape classes that can be used in ServiceMonitors and PodMonitors.
+# More info: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#monitoring.coreos.com/v1.ScrapeClass
+scrapeClasses: []
+# defaultScrapeClasses is the Giant Swarm scrape classes that can be used in GS ServiceMonitors and PodMonitors.
+defaultScrapeClasses:
+  - name: giantswarm-default
+    default: false
+    relabelings:
+    - sourceLabels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+      action: "replace"
+      targetLabel: app
+    - sourceLabels: [__meta_kubernetes_pod_node_name]
+      action: "replace"
+      targetLabel: node
+
 scrapeInterval: 60s
 
 securityContext:

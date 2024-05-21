@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add specific scrape classes in order to add relabeling in Giant Swarm ServiceMonitors and PodMonitors.
+
 ### Changed
 
 - Upgrade prometheus version to 2.51.1.
