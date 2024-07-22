@@ -8,6 +8,12 @@ metadata:
   name: {{ include "name" . }}
   namespace: {{ .Release.Namespace }}
 spec:
+  {{- if .Values.discovery.tuned }}
+  additionalArgs:
+  # -- Allow to tune the discovery scrape interval to save on resources usage. Default is 1s.
+  - name: scrape.discovery-reload-interval
+    value: {{ .Values.discovery.reloadInterval }}
+  {{- end }}
   {{- with .Values.affinity }}
   affinity:
     {{- toYaml . | nindent 4 -}}

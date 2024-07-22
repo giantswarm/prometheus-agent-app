@@ -32,6 +32,10 @@ affinity:
 
 keepDroppedTargets: 0
 
+discovery:
+  tuned: true
+  reloadInterval: 30s
+
 remoteWrite: []
 # - name: ""     # Name of the remote write integration
 #   proxyUrl: ""

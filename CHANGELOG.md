@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `scrape.discovery-reload-interval` as additional arg for the prometheus.
+
 ### Changed
 
 - Upgrade prometheus version to 2.51.1.
