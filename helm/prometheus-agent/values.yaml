@@ -43,6 +43,8 @@ prometheus-agent:
           topologyKey: kubernetes.io/hostname
         weight: 50
 
+  extraArgs: []
+
   keepDroppedTargets: 0
 
   remoteWrite: []

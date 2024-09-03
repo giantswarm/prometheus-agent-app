@@ -19,6 +19,9 @@ spec:
     - --enable-feature=agent
     - --web.enable-lifecycle
     - --web.listen-address=:9090
+    {{- with .Values.extraArgs }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
     name: prometheus
     # force exposition of port for monitoring
     ports:
