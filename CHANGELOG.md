@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2024-09-05
+
 ### Added
 
 - Support for extraArgs for prometheus-agent
@@ -197,7 +199,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First app iteration.
 
-[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.9...HEAD
+[Unreleased]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.7.0...HEAD
+[0.7.0]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.9...v0.7.0
 [0.6.9]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.8...v0.6.9
 [0.6.8]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.7...v0.6.8
 [0.6.7]: https://github.com/giantswarm/prometheus-agent-app/compare/v0.6.6...v0.6.7
